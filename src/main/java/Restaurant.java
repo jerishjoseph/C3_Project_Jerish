@@ -17,8 +17,14 @@ public class Restaurant {
         this.closingTime = closingTime;
     }
     public int calculateOrderPrice(List<String> items){
-        //Functionality not implemented as of now//
-    return 0;
+        int total = 0;
+        for (int i = 0; i < items.size(); i++) {
+            String val = items.get(i);
+            Item temp = this.findItemByName(val);
+            total += temp.getPrice();
+
+        }
+        return total;
     }
 
     public boolean isRestaurantOpen() {
