@@ -2,6 +2,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.spy;
 import org.mockito.*;
 
@@ -17,6 +20,7 @@ class RestaurantTest {
     LocalTime timeClosing=LocalTime.parse("11:00:00");
     Restaurant rest=new Restaurant("Indian hotel","chennai",timeOpen,timeClosing);
     Restaurant test=Mockito.spy(rest);
+
     @Test
     public void is_restaurant_open_should_return_true_if_time_is_between_opening_and_closing_time(){
        Mockito.when(test.getCurrentTime()).thenReturn(LocalTime.parse("09:00:00"));
@@ -31,7 +35,16 @@ class RestaurantTest {
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+@Test
+public void is_calculated_price_is_correct(){
+        test.addToMenu("briyani",250);
+        test.addToMenu("chicken",50);
+        List<String> menu=new ArrayList<>();
+        menu.add("briyani");
+        menu.add("chicken");
+        assertEquals(300, test.calculateOrderPrice(menu));
 
+}
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
     public void adding_item_to_menu_should_increase_menu_size_by_1(){

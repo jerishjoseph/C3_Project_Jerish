@@ -16,17 +16,21 @@ public class Restaurant {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
     }
+    public int calculateOrderPrice(List<String> items){
+        //Functionality not implemented as of now//
+    return 0;
+    }
 
     public boolean isRestaurantOpen() {
         LocalTime current=this.getCurrentTime();
         int val1=current.compareTo(this.openingTime);
         int val2=current.compareTo(this.closingTime);
         if(val1>=0 && val2<0){
-return true;
+        return true;
         }
-else{
-return false;
-    }
+        else{
+        return false;
+        }
 }
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
@@ -68,5 +72,6 @@ return false;
     public String getName() {
         return name;
     }
+
 
 }
